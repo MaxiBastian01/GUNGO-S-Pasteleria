@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GUNGO'S Pastelería</title>
+    <link rel="stylesheet" href="../CSS/styleCliente.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+    <header class="header">
+
+        <h1>GUNGO'S</h1>
+
+        <div class="header-actions">
+
+            <a href="https://www.instagram.com/gungospasteleria/?hl=es" target="_blank" class="icon-link">
+
+                <i class="fa-brands fa-instagram"></i>
+
+            </a>
+
+            <a href="carrito.html" class="icon-link">
+
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span id="contador-carrito">0</span>
+
+            </a>
+
+        </div>
+
+    </header>
+
+    <main>
+
+        <section class="hero" id="inicio">
+            <div class="hero-logo">
+                <img src="../IMG/Pasteleria1.png" alt="GUNGO'S Pastelería">
+            </div>
+
+            <a href="#catalogo" class="btn-principal">Ver catálogo</a>
+        </section>
+
+        <section class="categorias">
+            <h2>Categorías</h2>
+
+            <div class="categorias-lista">
+                <button class="categoria-btn activo">Todos</button>
+                <button class="categoria-btn">Tortas</button>
+                <button class="categoria-btn">Cupcakes</button>
+                <button class="categoria-btn">Postres</button>
+                <button class="categoria-btn">Alfajores</button>
+            </div>
+        </section>
+
+        <section class="catalogo" id="catalogo">
+            <h2>Catálogo</h2>
+
+            <div class="productos-grid" id="productos-container">
+                <!-- Los productos se cargan desde JS/Firebase -->
+            </div>
+        </section>
+
+        <section class="resumen-carrito">
+            <p>Tu pedido</p>
+            <h3><span id="cantidad-carrito">0</span> productos agregados</h3>
+            <a href="carrito.html" class="btn-secundario">Ir al carrito</a>
+        </section>
+
+        <section class="info-negocio">
+            <h2>Información</h2>
+
+            <div class="info-card">
+                <h3>Horarios</h3>
+                <p>Lunes a sábado de 9:00 a 20:00</p>
+            </div>
+
+            <div class="info-card">
+                <h3>Entregas</h3>
+                <p>Consultar zona de envío por WhatsApp.</p>
+            </div>
+
+            <div class="info-card">
+                <h3>Pedidos</h3>
+                <p>Los pedidos se confirman directamente por WhatsApp.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+
+        <h3>GUNGO'S Pastelería</h3>
+
+        <div class="redes-sociales">
+
+            <a href="https://www.instagram.com/gungospasteleria/?hl=es" target="_blank" class="social-btn instagram">
+
+                <i class="fa-brands fa-instagram"></i>
+                Instagram
+
+            </a>
+
+            <a href="https://api.whatsapp.com/send?phone=543442509108" target="_blank" class="social-btn whatsapp">
+
+                <i class="fa-brands fa-whatsapp"></i>
+                WhatsApp
+
+            </a>
+
+        </div>
+
+    </footer>
+
+    <script src="../JS/cliente.js"></script>
+</body>
+
+</html>
