@@ -9,7 +9,8 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 import {
-    signOut
+    signOut,
+    onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
 const form = document.getElementById("producto-form");
@@ -152,5 +153,11 @@ btnLogout.addEventListener("click", async () => {
     window.location.href = "loginAdmin.html";
 });
 
-cargarProductosAdmin();
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        cargarProductosAdmin();
+    } else {
+        window.location.href = "loginAdmin.html";
+    }
+});
 

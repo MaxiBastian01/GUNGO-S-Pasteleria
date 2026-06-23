@@ -24,7 +24,7 @@ const toastCarrito = document.getElementById("toast-carrito");
 const contenedor = document.getElementById("productos-container");
 const contadorCarrito = document.getElementById("contador-carrito");
 const cantidadCarrito = document.getElementById("cantidad-carrito");
-
+const categoriasContainer = document.getElementById("categorias-container");
 // ===============================
 // FIN SECCIÓN: ELEMENTOS DEL HTML
 // ===============================
@@ -65,7 +65,7 @@ async function cargarProductos() {
             productos.push(producto);
         }
     });
-
+    generarCategorias();
     mostrarProductos();
 }
 
@@ -79,10 +79,12 @@ async function cargarProductos() {
 // SECCIÓN: MOSTRAR PRODUCTOS EN HTML
 // ===============================
 
-function mostrarProductos() {
+function mostrarProductos(lista = productos) {
+
     contenedor.innerHTML = "";
 
-    productos.forEach(producto => {
+    lista.forEach(producto => {
+
         contenedor.innerHTML += `
             <article class="producto-card">
                 <img src="${producto.imagenUrl}" alt="${producto.nombre}">
@@ -166,4 +168,57 @@ actualizarContador();
 
 // ===============================
 // FIN SECCIÓN: INICIO DE LA PÁGINA
+// ===============================
+
+// ===============================
+// FIN SECCIÓN: Categorias dinamicas    
+// ===============================
+function generarCategorias() {
+
+    categoriasContainer.innerHTML = "";
+
+    const categorias = [
+        "todos",
+        ...new Set(productos.map(p => p.categoria))
+    ];
+
+    categorias.forEach(categoria => {
+
+        const boton = document.createElement("button");
+
+        boton.textContent =
+            categoria.charAt(0).toUpperCase() +
+            categoria.slice(1);
+
+        boton.classList.add("categoria-btn");
+
+        boton.addEventListener("click", () => {
+
+            document
+                .querySelectorAll(".categoria-btn")
+                .forEach(btn => btn.classList.remove("activo"));
+
+            boton.classList.add("activo");
+
+            if (categoria === "todos") {
+                mostrarProductos(productos);
+            } else {
+
+                const filtrados = productos.filter(
+                    p => p.categoria === categoria
+                );
+
+                mostrarProductos(filtrados);
+            }
+        });
+
+        categoriasContainer.appendChild(boton);
+    });
+
+    categoriasContainer
+        .querySelector(".categoria-btn")
+        ?.classList.add("activo");
+}
+// ===============================
+// FIN SECCIÓN: Fin Categorias dinamicas
 // ===============================
