@@ -23,7 +23,7 @@ import {
 const toastCarrito = document.getElementById("toast-carrito");
 const contenedor = document.getElementById("productos-container");
 const contadorCarrito = document.getElementById("contador-carrito");
-const cantidadCarrito = document.getElementById("cantidad-carrito");
+const btnVerMas = document.getElementById("btn-ver-mas");
 const categoriasContainer = document.getElementById("categorias-container");
 // ===============================
 // FIN SECCIÓN: ELEMENTOS DEL HTML
@@ -37,7 +37,8 @@ const categoriasContainer = document.getElementById("categorias-container");
 
 let productos = [];
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-
+let visibles = 6;
+let listaActual = [];
 // ===============================
 // FIN SECCIÓN: VARIABLES GLOBALES
 // ===============================
@@ -81,12 +82,16 @@ async function cargarProductos() {
 
 function mostrarProductos(lista = productos) {
 
+    listaActual = lista;
+
     contenedor.innerHTML = "";
 
-    lista.forEach(producto => {
+    listaActual.forEach((producto, index) => {
+
+        const oculto = index >= visibles ? "oculto" : "";
 
         contenedor.innerHTML += `
-            <article class="producto-card">
+            <article class="producto-card ${oculto}">
                 <img src="${producto.imagenUrl}" alt="${producto.nombre}">
 
                 <div class="producto-info">
@@ -106,7 +111,11 @@ function mostrarProductos(lista = productos) {
             agregarAlCarrito(boton.dataset.id);
         });
     });
+
+    actualizarBotonVerMas();
 }
+
+
 
 // ===============================
 // FIN SECCIÓN: MOSTRAR PRODUCTOS EN HTML
@@ -144,7 +153,7 @@ function actualizarContador() {
     }, 0);
 
     contadorCarrito.textContent = cantidadTotal;
-    cantidadCarrito.textContent = cantidadTotal;
+    
 }
 function mostrarToastCarrito() {
     toastCarrito.classList.add("mostrar");
@@ -194,6 +203,8 @@ function generarCategorias() {
 
         boton.addEventListener("click", () => {
 
+            visibles = 6;
+
             document
                 .querySelectorAll(".categoria-btn")
                 .forEach(btn => btn.classList.remove("activo"));
@@ -203,7 +214,6 @@ function generarCategorias() {
             if (categoria === "todos") {
                 mostrarProductos(productos);
             } else {
-
                 const filtrados = productos.filter(
                     p => p.categoria === categoria
                 );
@@ -222,3 +232,24 @@ function generarCategorias() {
 // ===============================
 // FIN SECCIÓN: Fin Categorias dinamicas
 // ===============================
+
+// ===============================
+// FIN SECCIÓN: Mostrar mas productos
+// ===============================
+
+
+
+actualizarCatalogo();
+
+function actualizarBotonVerMas() {
+    if (visibles >= listaActual.length) {
+        btnVerMas.style.display = "none";
+    } else {
+        btnVerMas.style.display = "block";
+    }
+}
+
+btnVerMas.addEventListener("click", () => {
+    visibles += 6;
+    mostrarProductos(listaActual);
+});

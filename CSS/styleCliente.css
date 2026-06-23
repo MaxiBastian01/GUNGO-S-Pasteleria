@@ -17,7 +17,7 @@ body {
     top: 0;
     z-index: 100;
     background: #151515;
-    padding: 16px;
+    padding: 16px max(16px, calc((100vw - 1200px) / 2));
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -49,7 +49,7 @@ body {
 
 .hero-logo img {
     width: 100%;
-    max-width: 320px;
+    max-width: 380px;
     object-fit: contain;
 }
 
@@ -96,12 +96,22 @@ body {
 
 .categorias,
 .catalogo,
-.info-negocio {
-    padding: 24px 16px;
+.info-negocio h2 {
+    text-align: center;
+    margin-bottom: 24px;
+    color: #d4c4a8;
+    padding-bottom: 50px;
 }
 
-.categorias h2,
-.catalogo h2,
+.info-container {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 40px;
+}
+
+
 .info-negocio h2 {
     margin-bottom: 18px;
     color: #d4c4a8;
@@ -133,10 +143,18 @@ body {
 
 /* PRODUCTOS */
 
+.productos-container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(250px, 320px));
+    justify-content: center;
+    gap: 20px;
+}
+
 .productos-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 18px;
+    grid-template-columns: repeat(2, minmax(250px, 280px));
+    justify-content: center;
+    gap: 20px;
 }
 
 .producto-card {
@@ -145,6 +163,8 @@ body {
     overflow: hidden;
     border: 1px solid #2f2f2f;
     transition: .3s;
+
+    max-width: 280px;
 }
 
 .producto-card:hover {
@@ -154,22 +174,20 @@ body {
 
 .producto-card img {
     width: 100%;
-    height: 220px;
+    height: 170px;
     object-fit: cover;
 }
 
 .producto-info {
-    padding: 16px;
+    padding: 12px;
 }
 
 .producto-info h3 {
-    color: white;
-    margin-bottom: 8px;
+    font-size: 16px;
 }
 
-.producto-info p {
-    color: #bcbcbc;
-    margin-bottom: 12px;
+.precio {
+    font-size: 18px;
 }
 
 .precio {
@@ -190,30 +208,12 @@ body {
     cursor: pointer;
 }
 
-/* RESUMEN CARRITO */
-
-.resumen-carrito {
-    margin: 20px 16px;
-    padding: 20px;
-    background: #1a1a1a;
-    border: 1px solid #333;
-    border-radius: 18px;
-}
-
-.resumen-carrito p {
-    color: #bdbdbd;
-}
-
-.resumen-carrito h3 {
-    color: #d4c4a8;
-    margin: 8px 0 16px;
-}
 
 /* INFO */
 
 .info-card {
-    background: #1a1a1a;
-    border: 1px solid #333;
+    background: #222;
+    border: 1px solid #3a3a3a;
     border-radius: 14px;
     padding: 16px;
     margin-bottom: 12px;
@@ -226,6 +226,10 @@ body {
 
 .info-card p {
     color: #c7c7c7;
+}
+
+.info-card:last-child {
+    margin-bottom: 0;
 }
 
 /* FOOTER */
@@ -272,7 +276,10 @@ body {
 @media (min-width: 768px) {
 
     .productos-grid {
-        grid-template-columns: repeat(2, 1fr);
+        display: grid;
+        grid-template-columns: repeat(2, minmax(250px, 280px));
+        justify-content: center;
+        gap: 20px;
     }
 
     .hero h2 {
@@ -282,16 +289,20 @@ body {
 
 @media (min-width: 1024px) {
 
-    .productos-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
     .hero,
     .categorias,
     .catalogo,
-    .info-negocio {
-        padding-left: 80px;
-        padding-right: 80px;
+    .info-negocio,
+    .resumen-carrito {
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    .productos-grid {
+        grid-template-columns: repeat(2, minmax(250px, 280px));
     }
 }
 
@@ -353,4 +364,186 @@ body {
 .ubicacion {
     background: #1f1f1f;
     border: 1px solid #333;
+}
+
+.btn-ver-mas {
+    display: block;
+    margin: 25px auto;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 12px;
+    background: #D4AF37;
+    color: #111;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.producto-card.oculto {
+    display: none;
+}
+
+
+/* CELULAR */
+.productos-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    justify-content: center;
+}
+
+.producto-card {
+    max-width: 170px;
+}
+
+.producto-card img {
+    height: 110px;
+}
+
+.producto-info {
+    padding: 8px;
+}
+
+.producto-info h3 {
+    font-size: 14px;
+}
+
+.precio {
+    font-size: 18px;
+}
+
+.btn-agregar {
+    padding: 8px;
+    font-size: 13px;
+}
+@media (max-width: 480px) {
+    .catalogo h2 {
+        font-size: 22px;
+        letter-spacing: 3px;
+        gap: 10px;
+    }
+
+    .catalogo h2::before,
+    .catalogo h2::after {
+        max-width: 55px;
+    }
+}
+@media (max-width: 480px) {
+    .titulo-seccion {
+        font-size: 22px;
+        letter-spacing: 3px;
+        gap: 10px;
+    }
+
+    .titulo-seccion::before,
+    .titulo-seccion::after {
+        max-width: 55px;
+    }
+}
+/* PC */
+@media (min-width: 768px) {
+
+    .productos-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 280px));
+        gap: 18px;
+        justify-content: center;
+    }
+
+    .producto-card {
+        max-width: 280px;
+    }
+
+    .producto-card img {
+        height: 170px;
+    }
+
+    .producto-info {
+        padding: 12px;
+    }
+
+    .producto-info h3 {
+        font-size: 16px;
+    }
+
+    .precio {
+        font-size: 22px;
+    }
+
+    .btn-agregar {
+        padding: 12px;
+        font-size: 14px;
+    }
+}
+@media (min-width: 768px) {
+    .info-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+    }
+
+    .info-card {
+        margin-bottom: 0;
+    }
+}
+
+/* CATÁLOGO */
+
+.catalogo h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+
+    color: #d4c4a8;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 26px;
+    font-weight: 700;
+    font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+
+    margin-bottom: 30px;
+}
+
+.catalogo h2::before,
+.catalogo h2::after {
+    content: "";
+    flex: 1;
+    max-width: 160px;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #D4AF37);
+}
+
+.catalogo h2::after {
+    background: linear-gradient(to left, transparent, #D4AF37);
+}
+
+
+
+/* Imformacion */
+.titulo-seccion {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+
+    color: #d4c4a8;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 26px;
+    font-weight: 700;
+    font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+
+    margin-bottom: 30px;
+}
+
+.titulo-seccion::before,
+.titulo-seccion::after {
+    content: "";
+    flex: 1;
+    max-width: 160px;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #D4AF37);
+}
+
+.titulo-seccion::after {
+    background: linear-gradient(to left, transparent, #D4AF37);
 }
