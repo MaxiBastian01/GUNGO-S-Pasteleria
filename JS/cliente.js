@@ -239,7 +239,6 @@ function generarCategorias() {
 
 
 
-actualizarCatalogo();
 
 function actualizarBotonVerMas() {
     if (visibles >= listaActual.length) {

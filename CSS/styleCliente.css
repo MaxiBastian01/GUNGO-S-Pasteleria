@@ -119,20 +119,45 @@ body {
 
 /* CATEGORIAS */
 
+.categorias {
+    padding: 24px 16px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.categorias h2 {
+    text-align: left;
+    color: #d4c4a8;
+    font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+    font-size: 24px;
+    letter-spacing: 1px;
+    margin-bottom: 14px;
+}
+
 .categorias-lista {
     display: flex;
     gap: 10px;
     overflow-x: auto;
+    padding-bottom: 8px;
+    scrollbar-width: none;
+}
+
+.categorias-lista::-webkit-scrollbar {
+    display: none;
 }
 
 .categoria-btn {
+    flex: 0 0 auto;
     background: #1b1b1b;
     color: white;
     border: 1px solid #333;
     border-radius: 20px;
-    padding: 10px 16px;
+    padding: 9px 16px;
     cursor: pointer;
     white-space: nowrap;
+    font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+    font-size: 13px;
+    font-weight: 700;
 }
 
 .categoria-btn.activo {
