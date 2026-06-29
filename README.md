@@ -65,9 +65,7 @@ Los datos de los productos se almacenan en **Firebase Firestore**, mientras que 
 
 ### Vista responsive
 
-<img width="391" height="807" alt="iniciomovil" src="https://github.com/user-attachments/assets/71110904-9519-4a12-b14a-b837173d1bc1" />
 
-<img width="389" height="805" alt="carritomovil" src="https://github.com/user-attachments/assets/ad1d90bf-e88f-4894-82f7-84db8121a820" />
 
 ---
 
